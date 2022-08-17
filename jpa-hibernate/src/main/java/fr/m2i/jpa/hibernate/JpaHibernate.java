@@ -5,6 +5,11 @@
 
 package fr.m2i.jpa.hibernate;
 
+import helper.SessionHelper;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 /**
  *
  * @author RAISA
@@ -12,6 +17,11 @@ package fr.m2i.jpa.hibernate;
 public class JpaHibernate {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+        EntityManager entityManager = SessionHelper.getEntityManager();
+
+        System.out.println("Nos traitements avec l'entity manager...");
+
+        entityManager.close();
     }
 }

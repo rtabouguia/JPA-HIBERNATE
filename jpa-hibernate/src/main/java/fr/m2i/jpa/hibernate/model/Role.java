@@ -10,18 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 
-/**
- *
- * @author RAISA
- */
 @Entity
 @Table(name="roles")
 public class Role implements Serializable {
-    
-    
+     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column( 
@@ -35,6 +29,14 @@ public class Role implements Serializable {
     @Column(length=50)
     private String identifiant;
     
+     public Role() {
+        
+    }
+
+    public Role(String identifiant, String description) {
+        this.identifiant = identifiant;
+        this.description = description;
+    }
 
 
 public long getId_role() {
@@ -61,7 +63,21 @@ public long getId_role() {
         this.identifiant = identifiant;
     }
 
+     @Override
+    public String toString() {
+        return "Role{" + "idRole=" + idRole + ", identifiant=" + identifiant + ", description=" + description + '}';
+    }
+    
+    public void copy(Role roleData) {
 
-    
-    
+        if (roleData.getIdentifiant() != null) {
+            this.setIdentifiant(roleData.getIdentifiant());
+        }
+
+        if (roleData.getDescription()!= null) {
+            this.setDescription(roleData.getDescription());
+        }
+    }
+
+       
 }

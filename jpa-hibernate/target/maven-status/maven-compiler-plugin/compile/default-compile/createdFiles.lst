@@ -1,2 +1,4 @@
+fr\m2i\jpa\hibernate\dao\RoleDAO.class
+fr\m2i\jpa\hibernate\helper\SessionHelper.class
 fr\m2i\jpa\hibernate\JpaHibernate.class
-.netbeans_automatic_build
+fr\m2i\jpa\hibernate\model\Role.class

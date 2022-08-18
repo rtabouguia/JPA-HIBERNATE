@@ -24,7 +24,7 @@ public class JpaHibernate {
         // create
        // Role roleAdmin = new Role("ADMIN", "Le rôle Administrateur"); 
        // roleDao.create(roleAdmin);
-       Role roleTech = new Role("TECHNICIEN", "Le rôle de Technicien"); 
+       Role roleTech = new Role("USER", "Le rôle d'utilisateur"); 
        roleDao.create(roleTech);
 
         // find

@@ -7,6 +7,7 @@ package fr.m2i.jpa.hibernate.model;
 import java.io.Serializable;
 //import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 
@@ -34,7 +35,7 @@ public class Utilisateur implements Serializable {
      @Column(name="date_naissance", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
      @Temporal(value=TemporalType.TIMESTAMP)
     private  Date dateNaissance;
-    private String identifiant;
+    
     
      
       @Column(name="marquer_effacer", columnDefinition = "TINYINT(1) DEFAULT 1")
@@ -49,22 +50,31 @@ public class Utilisateur implements Serializable {
     @Column(length=100)
     private String prenom;
     
+    @Column(name = "identifiant", length = 100)
+    private String identifiant;
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_role")
     private Role role;
+    
+    @OneToMany(mappedBy = "utilisateur",
+            cascade = {CascadeType.PERSIST, 
+                CascadeType.MERGE, CascadeType.REMOVE}, 
+            fetch = FetchType.LAZY, orphanRemoval = true)
+    List <Adresse> listAdresses;
+      
 
     public Utilisateur() {
     }
 
     
-    public Utilisateur(long id, boolean actif, String civilite, Date dateCreation, Date dateModification, Date dateNaissance, String identifiant, boolean marquerEffacer, String motDePasse, String nom, String prenom, Role role) {
-        this.id = id;
+    public Utilisateur(Role role,  String civilite, String nom, String prenom, String identifiant, String motDePasse, boolean actif, boolean marquerEffacer, Date dateCreation, Date dateModification, Date dateNaissance) {
+       this.identifiant =identifiant;
         this.actif = actif;
         this.civilite = civilite;
         this.dateCreation = dateCreation;
         this.dateModification = dateModification;
         this.dateNaissance = dateNaissance;
-        this.identifiant = identifiant;
         this.marquerEffacer = marquerEffacer;
         this.motDePasse = motDePasse;
         this.nom = nom;
@@ -74,6 +84,24 @@ public class Utilisateur implements Serializable {
     
     
     //Accesseurs et modificateurs
+     public List<Adresse> getListAdresses() {
+        return listAdresses;
+    }
+
+    public String getIdentifiant() {
+        return identifiant;
+    }
+
+    public void setIdentifiant(String identifiant) {
+        this.identifiant = identifiant;
+    }
+     
+     
+
+    public void setListAdresses(List<Adresse> listAdresses) {
+        this.listAdresses = listAdresses;
+    }
+    
     public long getId() {
         return id;
     }
@@ -194,6 +222,9 @@ public class Utilisateur implements Serializable {
         if (userData.getDateNaissance()!= null) {
             this.setDateNaissance(userData.getDateNaissance());
         }
+        if (userData.getIdentifiant()!= null) {
+            this.setIdentifiant(userData.getIdentifiant());
+        }
     }
      
  @Override
@@ -203,6 +234,7 @@ public class Utilisateur implements Serializable {
                 + ", civilite=" + civilite
                 + ", nom=" + nom
                 + ", prenom=" + prenom 
+                + ", identifiant=" + identifiant
                 + ", motPasse=" + motDePasse
                 + ", actif=" + actif
                 + ", marquerEffacer=" + marquerEffacer

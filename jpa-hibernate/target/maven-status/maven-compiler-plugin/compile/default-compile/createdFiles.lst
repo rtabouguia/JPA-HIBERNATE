@@ -1,5 +1,9 @@
-fr\m2i\jpa\hibernate\dao\RoleDAO.class
-fr\m2i\jpa\hibernate\helper\SessionHelper.class
 fr\m2i\jpa\hibernate\model\Utilisateur.class
 fr\m2i\jpa\hibernate\JpaHibernate.class
+fr\m2i\jpa\hibernate\dao\RoleDAO.class
+fr\m2i\jpa\hibernate\helper\SessionHelper.class
+fr\m2i\jpa\hibernate\SimpleDateFormat.class
+fr\m2i\jpa\hibernate\model\Adresse.class
+fr\m2i\jpa\hibernate\dao\UtilisateurDAO.class
+fr\m2i\jpa\hibernate\dao\AdresseDAO.class
 fr\m2i\jpa\hibernate\model\Role.class
